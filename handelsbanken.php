@@ -159,18 +159,18 @@ class Handelsbanken
 	}
 	
 	/**
-	 * Interests
+	 * Get interests
 	 *
 	 * @return array
 	 */
-	public function interests(){
-		$xml = $this->call('GET', 'interests');
+	public function get_interests(){
+		extract($this->call('GET', 'interests'));
 		
 		$rates = array();
 		
 		foreach($xml->rates->rate as $rate){
-			$rates[] = array(
-				'period' => (string) utf8_decode($rate->attributes()->period),
+			$rates[] = (object) array(
+				'period' => utf8_decode($rate->attributes()->period),
 				'value' => (string) $rate->attributes()->value
 			);
 		}

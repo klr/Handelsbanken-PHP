@@ -23,7 +23,7 @@ Available methods
  - login(`$username`, `$pin`)
  - get_accounts(`$token`, `$cookie`)
  - get_transactions(`$token`, `$cookie`, `$id`)
- - interests()
+ - get_interests()
  - more to come...
 
 

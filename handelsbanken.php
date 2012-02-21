@@ -150,6 +150,7 @@ class Handelsbanken
 			$transactions[] = (object) array(
 				'date' => (string) $transaction->transactionDate,
 				'timestamp' => strtotime($transaction->transactionDate),
+				'amount' => (double) $transaction->transactionAmount,
 				'description' => utf8_decode($transaction->transactionDescription),
 				'type' => (int) $transaction->transactionType
 			);

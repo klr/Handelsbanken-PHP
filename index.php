@@ -5,11 +5,11 @@ $handelsbanken = new Handelsbanken();
 
 try{
 	$auth = $handelsbanken->login('', '');
-	$accounts = $handelsbanken->get_accounts($auth->token, $auth->cookie);
+	$accounts = $handelsbanken->get_accounts($auth);
 	
 	$id = $accounts[0]->id;
 	
-	$transactions = $handelsbanken->get_transactions($auth->token, $auth->cookie, $id);
+	$transactions = $handelsbanken->get_transactions($auth, $id);
 	
 	echo '<pre>' . print_r($transactions, true) . '</pre>';
 }

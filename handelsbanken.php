@@ -125,14 +125,22 @@ class Handelsbanken
 		$accounts = array();
 		
 		foreach($xml->accounts->account as $account){
+			$amount = $account->accountAmount;
+			$amount = str_replace(',', '.', $amount);
+			$amount = str_replace(' ', '', $amount);
+			
+			$balance = $account->accountBalance;
+			$balance = str_replace(',', '.', $balance);
+			$balance = str_replace(' ', '', $balance);
+			
 			$accounts[] = (object) array(
 				'id' => (int) $account->accountId,
-				'name' => utf8_decode($account->accountName),
+				'name' => utf8_decode(utf8_encode($account->accountName)),
 				'number' => (int) $account->accountNumber,
 				'number_modified' => (string) $account->accountNumberModified,
 				'type' => (int) $account->type,
-				'amount' => (double) $account->accountAmount,
-				'balance' => (double) $account->accountBalance
+				'amount' => (float) $amount,
+				'balance' => (float) $balance
 			);
 		}
 		
@@ -159,11 +167,15 @@ class Handelsbanken
 		$transactions = array();
 		
 		foreach($xml->transactions->transaction as $transaction){
+			$amount = $transaction->transactionAmount;
+			$amount = str_replace(',', '.', $amount);
+			$amount = str_replace(' ', '', $amount);
+			
 			$transactions[] = (object) array(
 				'date' => (string) $transaction->transactionDate,
 				'timestamp' => strtotime($transaction->transactionDate),
-				'amount' => (float) str_replace(' ', '', $transaction->transactionAmount),
-				'description' => utf8_decode($transaction->transactionDescription),
+				'amount' => (float) $amount,
+				'description' => utf8_decode(utf8_encode($transaction->transactionDescription)),
 				'type' => (int) $transaction->transactionType
 			);
 		}

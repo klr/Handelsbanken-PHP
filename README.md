@@ -1,5 +1,8 @@
-Handelsbanken API wrapper
+Handelsbanken has changed their API, this "API wrapper" does not work anymore.
 ===
+
+Handelsbanken API wrapper
+---
 
 Basic usage:
 
